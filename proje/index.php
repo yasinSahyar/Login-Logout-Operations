@@ -138,6 +138,8 @@
         <div class="container">
             <h3 id="h3iletisim">Iletisim</h3>
 
+            <form action="index.php" method="post">
+            
             <div id="iletisimopak">
                 <div id="formgroup">
                     <div id="solform">
@@ -162,6 +164,8 @@
                     <p class="adresp">Email :jasiin358@gmail.com</p>
                 </div>
             </div>
+
+            </form>
 
             <footer>
                 <div id="copyright">2023 | Tum Haklari Saklidir</div>
@@ -190,3 +194,28 @@
 </body>
 <!--https://www.youtube.com/watch?v=e8v8ou_k0fs&list=PL3AsBN9JULagBDRoJOBsRwtSGTB4pnGfA&index=3 -->
 </html>
+
+<?php
+include("baglanti.php");
+
+if(isset($_POST["isim"], $_POST["tel"], $_POST["mail"], $_POST["konu"], $_POST["mesaj"] )) {
+    $adsoyad=$_POST["isim"];
+    $telefon=$_POST["tel"];
+    $email=$_POST["mail"];
+    $konu=$_POST["konu"];
+    $mesaj=$_POST["mesaj"];
+    
+
+    $ekle="INSERT INTO iletisim (adsoyad, telefon, email, konu, mesaj) VALUES ('". $adsoyad."','".$telefon."','".$email."','".$konu."','".$mesaj."')";
+    
+    if($baglan->query($ekle)===TRUE)
+    {
+        echo "<script>alert('Mesajiniz Basari ile Gonderilmistir.')</script>";
+    }
+    else{
+        echo "<script>alert('Mesajiniz Gonderlemedi.')</script>";
+    }
+
+}
+?>
+<!--http://localhost/munu%20project/proje/index.php -->
